@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temperature Converter</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    input[type="text"] {
+        padding: 8px;
+        width: 150px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    select {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+
+<h2>Temperature Converter</h2>
+
+<input type="text" id="temperatureInput" placeholder="Enter temperature...">
+<select id="unitSelect">
+    <option value="celsius">Celsius</option>
+    <option value="fahrenheit">Fahrenheit</option>
+</select>
+<button onclick="convertTemperature()">Convert</button>
+
+<div id="result"></div>
+
+<script>
+function convertTemperature() {
+    var temperatureInput = document.getElementById("temperatureInput").value;
+    var unitSelect = document.getElementById("unitSelect").value;
+    var result = document.getElementById("result");
+
+    // Validate input as a number
+    if (isNaN(temperatureInput)) {
+        result.innerHTML = "Please enter a valid number!";
+        return;
+    }
+
+    // Convert temperature based on selected unit
+    var convertedTemperature;
+    if (unitSelect === "celsius") {
+        convertedTemperature = (parseFloat(temperatureInput) * 9/5) + 32;
+        result.innerHTML = temperatureInput + " °C = " + convertedTemperature.toFixed(2) + " °F";
+    } else {
+        convertedTemperature = (parseFloat(temperatureInput) - 32) * 5/9;
+        result.innerHTML = temperatureInput + " °F = " + convertedTemperature.toFixed(2) + " °C";
+    }
+}
+</script>
+
+</body>
+</html>
